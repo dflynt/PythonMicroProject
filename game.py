@@ -110,10 +110,12 @@ def playermovement(event):
     else:
         print("Invalid key. Use WASD only.")
 
+import os
 # game is running here
 while (playing):
     playermovement(input("Move to? "))
     game.setboard(playerposition)
+    os.system("cls")
     game.printBoard()
 
 print("Congrats!")
