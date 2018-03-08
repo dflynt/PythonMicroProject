@@ -1,0 +1,4 @@
+Python micro project that is a maze game. The player will use the directional keys and move through the maze. The console outputs if the input is valid or invalid - if there is a wall in the player's path or not. 
+
+--Algorithm--
+Create a 2D array of strings. 0 is a boundary, 1 is the player, and " " is a pathway. 
