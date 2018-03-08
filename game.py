@@ -35,6 +35,18 @@ class Game:
         for line in range(0, self.width):
               print(' '.join(self.board[line])) #.join on space removes brackets, commas, and quotes when printing lists
 
+    def getheight(self):
+        return self.height
+
+    def getwidth(self):
+        return self.width
+
+    def getboard(self):
+        return self.board
+
+    def setboard(self, board):
+        self.board = board
+
 #Board width and height is taken from command line arguments
 #[1] is width
 #[2] is height
@@ -43,4 +55,64 @@ print(sys.argv[2])
 game = Game(int(sys.argv[1]), int(sys.argv[2]))
 game.populateBoard()
 game.createBoundaries()
+
+
+
+'''
+Game logic starts here.
+'''
+playing = True
+playerposition = game.getboard()
+x = game.getheight() - 1
+y = 1
+playerposition[x][y] = " 2 "
+
+game.setboard(playerposition)
 game.printBoard()
+
+finish_height = 0
+finish_width = game.getwidth() - 2
+
+def playermovement(event):
+    global y
+    global x
+    global playing
+
+    # if user makes it to the end
+    if y == finish_width and x == finish_height:
+        playing = False
+
+    # move up
+    if event == "w" or event == "W":
+        if  x - 1 < game.getwidth() and playerposition[x - 1][y] != " 0 ":
+            playerposition[x][y] = " 1 "
+            x -= 1
+            playerposition[x][y] = " 2 "
+    # move down
+    elif event == "s" or event == "S":
+        if x + 1 < game.getwidth() and playerposition[x + 1][y] != " 0 ":
+            playerposition[x][y] = " 1 "
+            x += 1
+            playerposition[x][y] = " 2 "
+    # move right
+    elif event == "d" or event == "D":
+        if y + 1 < game.getheight() and playerposition[x][y + 1] != " 0 ":
+            playerposition[x][y] = " 1 "
+            y += 1
+            playerposition[x][y] = " 2 "
+    # move left
+    elif event == "a" or event == "A":
+        if y - 1 < game.getheight() and playerposition[x][y - 1] != " 0 ":
+            playerposition[x][y] = " 1 "
+            y -= 1
+            playerposition[x][y] = " 2 "
+    else:
+        print("Invalid key. Use WASD only.")
+
+# game is running here
+while (playing):
+    playermovement(input("Move to? "))
+    game.setboard(playerposition)
+    game.printBoard()
+
+print("Congrats!")
