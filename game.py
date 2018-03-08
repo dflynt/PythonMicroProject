@@ -38,8 +38,9 @@ class Game:
 #Board width and height is taken from command line arguments
 #[1] is width
 #[2] is height
-print(sys.argv[1])
-print(sys.argv[2])
+if int(sys.argv[1]) < 5 or int(sys.argv[2]) < 5:
+    print("Heighth and width must be 5 or higher. Exiting program")
+    sys.exit()
 game = Game(int(sys.argv[1]), int(sys.argv[2]))
 game.populateBoard()
 game.createBoundaries()
