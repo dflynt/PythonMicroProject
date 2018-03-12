@@ -1,5 +1,5 @@
 import sys
-
+import random
 class Game:
     def __init__(self, width, height):
         self.width = width
@@ -47,14 +47,27 @@ class Game:
     def setboard(self, board):
         self.board = board
 
+    def getRandomSpace(self, low, high):
+        return random.randrange(low, high)
+
+    # '#' character denotes enemy
+    def populateEnemies(self, count):
+        for x in range(0, count):
+            randWidth = self.getRandomSpace(1, self.width - 1)
+            randHeight = self.getRandomSpace(1, self.height - 1)
+            self.board[randHeight][randWidth] = " # "
+
+
 #Board width and height is taken from command line arguments
 #[1] is width
 #[2] is height
 if int(sys.argv[1]) < 5 or int(sys.argv[2]) < 5:
-    print("Heighth and width must be 5 or higher. Exiting program")
+    print("Height and width must be 5 or higher. Exiting program")
     sys.exit()
 game = Game(int(sys.argv[1]), int(sys.argv[2]))
+
 game.populateBoard()
+game.populateEnemies(5)
 game.createBoundaries()
 
 
