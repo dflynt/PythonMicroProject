@@ -7,13 +7,15 @@ class Game:
         self.size = width * height
         self.board = []
 
-    def populateBoard(self):
+    def populateboard(self):
         for i in range(0, self.width):
             self.board.append([])
             for l in range(0, self.height):
-                if l == 0 or l == self.width - 1: #top and bottom row boundaries
+                if l == 0 or l == self.width - 1:
+                    #top and bottom row boundaries
                     self.board[i].append(" 0 ")
-                elif i == 0 or i == self.height - 1: #first and last column boundaries
+                elif i == 0 or i == self.height - 1:
+                     #first and last column boundaries
                     self.board[i].append(" 0 ")
                 else:
                     self.board[i].append(" 1 ")
@@ -25,15 +27,16 @@ class Game:
         self.board[self.height - 1][1] = " 1 "
 
     # hard code boundaries
-    def createBoundaries(self):
+    def createboundaries(self):
         for x in range(2,6):
             self.board[2][x] = " 0 "
         for x in range(3, 7):
             self.board[5][x] = " 0 "
         
-    def printBoard(self):
+    def printboard(self):
         for line in range(0, self.width):
-              print(' '.join(self.board[line])) #.join on space removes brackets, commas, and quotes when printing lists
+              print(' '.join(self.board[line])) 
+              #.join on space removes brackets, commas, and quotes when printing lists
 
     def getheight(self):
         return self.height
@@ -47,11 +50,11 @@ class Game:
     def setboard(self, board):
         self.board = board
 
-    def getRandomSpace(self, low, high):
+    def getrandomspace(self, low, high):
         return random.randrange(low, high)
 
     # '#' character denotes enemy
-    def populateEnemies(self, count):
+    def populateenemies(self, count):
         for x in range(0, count):
             randWidth = self.getRandomSpace(1, self.width - 1)
             randHeight = self.getRandomSpace(1, self.height - 1)
