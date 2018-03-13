@@ -1,6 +1,14 @@
 import sys
 import random
+
+# The following is the game object.
+# This contains the board to move across, the ability to print the board,
+# the assurance of proper boundaries and entry/exit points, enemy
+# population (no longer implemented), and the ability to alter the board.
 class Game:
+	
+    # The following code block defines the major parts of the game object,
+    # mainly the board itself and its properties.
     def __init__(self, width, height):
         self.width = width
         self.height = height
@@ -36,7 +44,7 @@ class Game:
     def printboard(self):
         for line in range(0, self.width):
               print(' '.join(self.board[line])) 
-              #.join on space removes brackets, commas, and quotes when printing lists
+              # .join on space removes brackets, commas, and quotes when printing lists
 
     def getheight(self):
         return self.height
@@ -61,19 +69,25 @@ class Game:
             self.board[randHeight][randWidth] = " # "
 
 
-#Board width and height is taken from command line arguments
-#[1] is width
-#[2] is height
-if int(sys.argv[1]) < 5 or int(sys.argv[2]) < 5:
-    print("Height and width must be 5 or higher. Exiting program")
+# Board width and height is taken from command line arguments
+# [1] is width
+# [2] is height
+# The following try/except block ensures a user is aware of the args
+# requirements in case they forget.
+try:
+    if int(sys.argv[1]) < 7 or int(sys.argv[2]) < 7:
+       print("Height and width must be 7 or higher. Exiting program")
+       sys.exit()
+except:
+    print("Please re-run program with command line arguments like so:")
+    print("python game.py <width> <height>")
     sys.exit()
+
 game = Game(int(sys.argv[1]), int(sys.argv[2]))
 
 game.populateBoard()
 game.populateEnemies(5)
 game.createBoundaries()
-
-
 
 '''
 Game logic starts here.
@@ -105,24 +119,32 @@ def playermovement(event):
             playerposition[x][y] = " 1 "
             x -= 1
             playerposition[x][y] = " 2 "
+        else:
+            print ("Invalid move. Try again.")
     # move down
     elif event == "s" or event == "S":
         if x + 1 < game.getwidth() and playerposition[x + 1][y] != " 0 ":
             playerposition[x][y] = " 1 "
             x += 1
             playerposition[x][y] = " 2 "
+        else: 
+            print ("Invalid move. Try again.")
     # move right
     elif event == "d" or event == "D":
         if y + 1 < game.getheight() and playerposition[x][y + 1] != " 0 ":
             playerposition[x][y] = " 1 "
             y += 1
             playerposition[x][y] = " 2 "
+        else: 
+            print ("Invalid move. Try again.")
     # move left
     elif event == "a" or event == "A":
         if y - 1 < game.getheight() and playerposition[x][y - 1] != " 0 ":
             playerposition[x][y] = " 1 "
             y -= 1
             playerposition[x][y] = " 2 "
+        else: 
+            print ("Invalid move. Try again.")
     else:
         print("Invalid key. Use WASD only.")
 
@@ -131,7 +153,7 @@ import os
 while (playing):
     playermovement(input("Move to? "))
     game.setboard(playerposition)
-    os.system("cls")
+    #os.system("cls")
     game.printBoard()
 
 print("Congrats!")
