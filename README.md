@@ -12,6 +12,11 @@ This is a simple maze game. The player must reach the end to win.
 Python 3.6 was used to implement the game.
 ***
 
+#### Quick-Start Guide
+Ensure you have [Python 3.6](https://www.python.org/downloads/) installed
+To run, type the following command in your choice of prompt:
+`python game.py`
+
 #### Gameplay Instructions
 * The player begins at the lower left corner.
 * The exit is at the upper right corner.
