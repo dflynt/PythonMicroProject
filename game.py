@@ -75,9 +75,9 @@ class Game:
 
 game = Game(10, 10)
 
-game.populateBoard()
-game.populateEnemies(5)
-game.createBoundaries()
+game.populateboard()
+game.populateenemies(5)
+game.createboundaries()
 
 '''
 Game logic starts here.
@@ -143,7 +143,7 @@ def playermovement(event):
 while (playing):
     playermovement(input("Move to? "))
     game.setboard(playerposition)
-    # os.system("cls")
-    game.printBoard()
+    os.system("cls")
+    game.printboard()
 
 print("Congrats!")
