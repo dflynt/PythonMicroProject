@@ -73,21 +73,7 @@ class Game:
             self.board[randHeight][randWidth] = " # "
 
 
-# Board width and height is taken from command line arguments
-# [1] is width
-# [2] is height
-# The following try/except block ensures a user is aware of the args
-# requirements in case they forget.
-try:
-    if int(sys.argv[1]) < 7 or int(sys.argv[2]) < 7:
-        print("Height and width must be 7 or higher. Exiting program")
-        sys.exit()
-except:
-    print("Please re-run program with command line arguments like so:")
-    print("python game.py <width> <height>")
-    sys.exit()
-
-game = Game(int(sys.argv[1]), int(sys.argv[2]))
+game = Game(10, 10)
 
 game.populateBoard()
 game.populateEnemies(5)
