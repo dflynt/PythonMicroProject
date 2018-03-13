@@ -72,8 +72,8 @@ class Game:
 # The following try/except block ensures a user is aware of the args
 # requirements in case they forget.
 try:
-    if int(sys.argv[1]) < 5 or int(sys.argv[2]) < 5:
-       print("Height and width must be 5 or higher. Exiting program")
+    if int(sys.argv[1]) < 7 or int(sys.argv[2]) < 7:
+       print("Height and width must be 7 or higher. Exiting program")
        sys.exit()
 except:
     print("Please re-run program with command line arguments like so:")
