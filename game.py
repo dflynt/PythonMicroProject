@@ -37,12 +37,12 @@ class Game:
         self.board[0][self.width - 2] = " 1 "
         self.board[self.height - 1][1] = " 1 "
 
-    # hard code boundaries
+    # randomize the walls in the maze
     def createboundaries(self):
-        for x in range(2, 6):
-            self.board[2][x] = " 0 "
-        for x in range(3, 7):
-            self.board[5][x] = " 0 "
+        for i in range(1, 8):
+            self.board[i][random.randint(2,4)] = " 0 "
+            self.board[i][random.randint(3, 5)] = " 0 "
+            self.board[i][random.randint(6, 8)] = " 0 "
 
     def printboard(self):
         for line in range(0, self.width):
@@ -66,17 +66,17 @@ class Game:
         return random.randrange(low, high)
 
     # '#' character denotes enemy
-    def populateenemies(self, count):
-        for x in range(0, count):
-            randWidth = self.getrandomspace(1, self.width - 1)
-            randHeight = self.getrandomspace(1, self.height - 1)
-            self.board[randHeight][randWidth] = " # "
+    # def populateenemies(self, count):
+    #     for x in range(0, count):
+    #         randWidth = self.getrandomspace(1, self.width - 1)
+    #         randHeight = self.getrandomspace(1, self.height - 1)
+    #         self.board[randHeight][randWidth] = " # "
 
 
 game = Game(10, 10)
 
 game.populateboard()
-game.populateenemies(5)
+# game.populateenemies(5)
 game.createboundaries()
 
 '''
