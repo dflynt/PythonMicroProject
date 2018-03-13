@@ -1,12 +1,15 @@
 import sys
 import random
+import os
 
 # The following is the game object.
 # This contains the board to move across, the ability to print the board,
 # the assurance of proper boundaries and entry/exit points, enemy
 # population (no longer implemented), and the ability to alter the board.
+
+
 class Game:
-	
+
     # The following code block defines the major parts of the game object,
     # mainly the board itself and its properties.
     def __init__(self, width, height):
@@ -20,31 +23,32 @@ class Game:
             self.board.append([])
             for l in range(0, self.height):
                 if l == 0 or l == self.width - 1:
-                    #top and bottom row boundaries
+                    # top and bottom row boundaries
                     self.board[i].append(" 0 ")
                 elif i == 0 or i == self.height - 1:
-                     #first and last column boundaries
+                    # first and last column boundaries
                     self.board[i].append(" 0 ")
                 else:
                     self.board[i].append(" 1 ")
 
         # hard code entry and exit
         # line 23 = exit
-        # line 25 = entry           
+        # line 25 = entry
         self.board[0][self.width - 2] = " 1 "
         self.board[self.height - 1][1] = " 1 "
 
     # hard code boundaries
     def createboundaries(self):
-        for x in range(2,6):
+        for x in range(2, 6):
             self.board[2][x] = " 0 "
         for x in range(3, 7):
             self.board[5][x] = " 0 "
-        
+
     def printboard(self):
         for line in range(0, self.width):
-              print(' '.join(self.board[line])) 
-              # .join on space removes brackets, commas, and quotes when printing lists
+            print(' '.join(self.board[line]))
+            # .join on space removes brackets, commas,
+            # and quotes when printing lists
 
     def getheight(self):
         return self.height
@@ -76,8 +80,8 @@ class Game:
 # requirements in case they forget.
 try:
     if int(sys.argv[1]) < 7 or int(sys.argv[2]) < 7:
-       print("Height and width must be 7 or higher. Exiting program")
-       sys.exit()
+        print("Height and width must be 7 or higher. Exiting program")
+        sys.exit()
 except:
     print("Please re-run program with command line arguments like so:")
     print("python game.py <width> <height>")
@@ -104,6 +108,7 @@ game.printBoard()
 finish_height = 0
 finish_width = game.getwidth() - 2
 
+
 def playermovement(event):
     global y
     global x
@@ -115,7 +120,7 @@ def playermovement(event):
 
     # move up
     if event == "w" or event == "W":
-        if  x - 1 < game.getwidth() and playerposition[x - 1][y] != " 0 ":
+        if x - 1 < game.getwidth() and playerposition[x - 1][y] != " 0 ":
             playerposition[x][y] = " 1 "
             x -= 1
             playerposition[x][y] = " 2 "
@@ -127,7 +132,7 @@ def playermovement(event):
             playerposition[x][y] = " 1 "
             x += 1
             playerposition[x][y] = " 2 "
-        else: 
+        else:
             print ("Invalid move. Try again.")
     # move right
     elif event == "d" or event == "D":
@@ -135,7 +140,7 @@ def playermovement(event):
             playerposition[x][y] = " 1 "
             y += 1
             playerposition[x][y] = " 2 "
-        else: 
+        else:
             print ("Invalid move. Try again.")
     # move left
     elif event == "a" or event == "A":
@@ -143,17 +148,16 @@ def playermovement(event):
             playerposition[x][y] = " 1 "
             y -= 1
             playerposition[x][y] = " 2 "
-        else: 
+        else:
             print ("Invalid move. Try again.")
     else:
         print("Invalid key. Use WASD only.")
 
-import os
 # game is running here
 while (playing):
     playermovement(input("Move to? "))
     game.setboard(playerposition)
-    #os.system("cls")
+    # os.system("cls")
     game.printBoard()
 
 print("Congrats!")
