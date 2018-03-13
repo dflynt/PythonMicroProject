@@ -17,7 +17,7 @@ Python 3.6 was used to implement the game.
 * In your chioce of prompt/command window, nativate to the containing folder.
 * To run, type the following command in the prompt/command window:
 
-`python game.py`
+`python game.py <width> <height>`
 
 ---
 
