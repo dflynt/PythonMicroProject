@@ -1,6 +1,14 @@
 import sys
 import random
+
+# The following is the game object.
+# This contains the board to move across, the ability to print the board,
+# the assurance of proper boundaries and entry/exit points, enemy
+# population (no longer implemented), and the ability to alter the board.
 class Game:
+	
+    # The following code block defines the major parts of the game object,
+    # mainly the board itself and its properties.
     def __init__(self, width, height):
         self.width = width
         self.height = height
@@ -61,16 +69,19 @@ class Game:
 #Board width and height is taken from command line arguments
 #[1] is width
 #[2] is height
-if int(sys.argv[1]) < 5 or int(sys.argv[2]) < 5:
-    print("Height and width must be 5 or higher. Exiting program")
+try:
+    if int(sys.argv[1]) < 5 or int(sys.argv[2]) < 5:
+       print("Height and width must be 5 or higher. Exiting program")
+       sys.exit()
+except:
+    print("Please re-run program with command line arguments like so:")
+    print("python game.py <width> <height>")
     sys.exit()
-game = Game(int(sys.argv[1]), int(sys.argv[2]))
 
+game = Game(int(sys.argv[1]), int(sys.argv[2]))
 game.populateBoard()
 game.populateEnemies(5)
 game.createBoundaries()
-
-
 
 '''
 Game logic starts here.
