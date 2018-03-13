@@ -41,7 +41,7 @@ class Game:
         
     def printBoard(self):
         for line in range(0, self.width):
-              print(' '.join(self.board[line])) #.join on space removes brackets, commas, and quotes when printing lists
+              print(' '.join(self.board[line])) # .join on space removes brackets, commas, and quotes when printing lists
 
     def getheight(self):
         return self.height
@@ -66,9 +66,11 @@ class Game:
             self.board[randHeight][randWidth] = " # "
 
 
-#Board width and height is taken from command line arguments
-#[1] is width
-#[2] is height
+# Board width and height is taken from command line arguments
+# [1] is width
+# [2] is height
+# The following try/except block ensures a user is aware of the args
+# requirements in case they forget.
 try:
     if int(sys.argv[1]) < 5 or int(sys.argv[2]) < 5:
        print("Height and width must be 5 or higher. Exiting program")
