@@ -68,8 +68,8 @@ class Game:
     # '#' character denotes enemy
     def populateenemies(self, count):
         for x in range(0, count):
-            randWidth = self.getRandomSpace(1, self.width - 1)
-            randHeight = self.getRandomSpace(1, self.height - 1)
+            randWidth = self.getrandomspace(1, self.width - 1)
+            randHeight = self.getrandomspace(1, self.height - 1)
             self.board[randHeight][randWidth] = " # "
 
 
@@ -89,7 +89,7 @@ y = 1
 playerposition[x][y] = " 2 "
 
 game.setboard(playerposition)
-game.printBoard()
+game.printboard()
 
 finish_height = 0
 finish_width = game.getwidth() - 2
