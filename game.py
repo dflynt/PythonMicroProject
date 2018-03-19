@@ -75,7 +75,7 @@ class Game:
 
 game = Game(10, 10)
 
-game.populateboard()
+game.pop11ulateboard()
 # game.populateenemies(5)
 game.createboundaries()
 
